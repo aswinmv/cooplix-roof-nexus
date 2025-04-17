@@ -1,18 +1,13 @@
-
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-cooplix-800 text-white">
+  return <footer className="bg-cooplix-800 text-white">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Cooplix</h3>
             <p className="text-gray-300 mb-2">House of Roofings</p>
-            <p className="text-gray-300 mb-4">
-              Professional roofing solutions for builders, contractors, and construction managers.
-            </p>
+            <p className="text-gray-300 mb-4">We specialize in outsourcing services to Roofing Industry. Our services include drafting, estimation, ordering, data entry and so on. Are you looking forward for more profit and expansion of your Roofing Business, then you are on the right place.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Facebook size={20} />
@@ -101,13 +96,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 mt-1 flex-shrink-0" />
-                <span className="text-gray-300">123 Roofing Way, Construction City, CC 12345</span>
+                <span className="text-gray-300">Calicut ,Kerala -Calicut City, </span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 flex-shrink-0" />
-                <a href="tel:+11234567890" className="text-gray-300 hover:text-white transition-colors">
-                  (123) 456-7890
-                </a>
+                <a href="tel:+11234567890" className="text-gray-300 hover:text-white transition-colors">8848082647</a>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />
@@ -125,8 +118,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
