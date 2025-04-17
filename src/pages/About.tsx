@@ -1,5 +1,5 @@
 
-import { Award, Users, Tool, TrendingUp, Check } from "lucide-react";
+import { Award, Users, Wrench, TrendingUp, Check } from "lucide-react";
 import CTA from "@/components/CTA";
 
 const About = () => {
@@ -68,7 +68,7 @@ const About = () => {
             
             <div className="bg-white p-6 rounded-lg shadow-lg text-center">
               <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-cooplix-100 text-cooplix-600 mb-4">
-                <Tool size={32} />
+                <Wrench size={32} />
               </div>
               <h3 className="text-xl font-semibold mb-3">Advanced Tools</h3>
               <p className="text-gray-600">
