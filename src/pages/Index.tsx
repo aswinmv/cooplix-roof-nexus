@@ -1,48 +1,47 @@
-
 import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import CTA from "@/components/CTA";
-import { Building, Calendar, BarChart3, LineChart, Home, Building2 } from "lucide-react";
+import { PenTool, BarChart3, PackageCheck, FileText, Calendar, Laptop, Home, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const services = [
     {
-      title: "Roof Blocking",
-      description: "Precise roof blocking plans for residential and commercial projects, ensuring structural integrity and proper installation.",
-      icon: <Building size={24} />,
-      linkTo: "/services#roof-blocking"
+      title: "Roof Drafting & Layout Planning",
+      description: "Accurate and detailed roof drawings tailored for both residential and commercial projects, ensuring smooth on-site execution and material clarity.",
+      icon: <PenTool size={24} />,
+      linkTo: "/services#roof-drafting"
     },
     {
-      title: "Scheduling",
-      description: "Detailed scheduling services to optimize your project timeline and coordinate all roofing activities efficiently.",
+      title: "Estimation & Quantity Takeoffs",
+      description: "Precise material takeoffs using advanced tools and software like AppliCad — helping you quote faster, reduce waste, and stay competitive.",
+      icon: <BarChart3 size={24} />,
+      linkTo: "/services#estimation"
+    },
+    {
+      title: "Material Ordering Support",
+      description: "We handle material ordering and coordination to ensure timely delivery and minimize delays, so your crew can focus on what they do best.",
+      icon: <PackageCheck size={24} />,
+      linkTo: "/services#material-ordering"
+    },
+    {
+      title: "Data Entry & Project Documentation",
+      description: "Leave the admin work to us — we manage all project-related data entry, reporting, and file organization to keep your operations running efficiently.",
+      icon: <FileText size={24} />,
+      linkTo: "/services#data-entry"
+    },
+    {
+      title: "Project Scheduling",
+      description: "Structured timelines for roofing jobs that help align labor, deliveries, and site readiness — improving job flow and reducing downtime.",
       icon: <Calendar size={24} />,
       linkTo: "/services#scheduling"
     },
     {
-      title: "Quantity Takeoffs",
-      description: "Accurate material estimations and quantity takeoffs to prevent waste and ensure you have exactly what you need.",
-      icon: <BarChart3 size={24} />,
-      linkTo: "/services#quantity-takeoffs"
-    },
-    {
-      title: "AppliCad Expertise",
-      description: "Industry-leading AppliCad-based estimations and 3D modeling for complex roofing projects with precision.",
-      icon: <LineChart size={24} />,
+      title: "AppliCad Roof Planning",
+      description: "We use AppliCad to produce precise roof models, panel layouts, cutting lists, and material estimates — optimized for accuracy and performance.",
+      icon: <Laptop size={24} />,
       linkTo: "/services#applicad"
-    },
-    {
-      title: "Residential Projects",
-      description: "Specialized solutions for residential roofing projects of all scales, from single homes to large developments.",
-      icon: <Home size={24} />,
-      linkTo: "/services#residential"
-    },
-    {
-      title: "Commercial Projects",
-      description: "Comprehensive roofing solutions for commercial buildings, warehouses, and industrial complexes.",
-      icon: <Building2 size={24} />,
-      linkTo: "/services#commercial"
     }
   ];
 
@@ -75,9 +74,9 @@ const Index = () => {
       <section className="py-16 md:py-24 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Roofing Solutions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">How We Help Your Business</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Comprehensive roofing services designed specifically for builders, contractors, and construction managers handling residential and commercial projects.
+              Our specialized services are designed to streamline your roofing operations, reduce costs, and improve project efficiency.
             </p>
           </div>
           

@@ -14,7 +14,7 @@ const Hero = () => {
             Professional Roofing Solutions
           </h1>
           <p className="text-xl text-cooplix-100 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Expert roof blocking, scheduling, material planning, quantity takeoffs, and AppliCad-based estimations for builders and contractors.
+            Expert roof drafting, material takeoffs, scheduling, documentation, and AppliCad-based estimations for builders and contractors.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
             <Button 
