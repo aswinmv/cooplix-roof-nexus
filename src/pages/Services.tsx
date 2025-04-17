@@ -1,8 +1,100 @@
 
-import { Building, Calendar, BarChart3, LineChart, Home, Building2, Check } from "lucide-react";
+import { 
+  Building, Calendar, BarChart3, LineChart, 
+  Home, Building2, Check, PenTool, PackageCheck, 
+  FileText, Clock, Laptop 
+} from "lucide-react";
 import CTA from "@/components/CTA";
+import ServiceCard from "@/components/ServiceCard";
 
 const Services = () => {
+  const services = [
+    {
+      id: "roof-drafting",
+      title: "Roof Drafting & Layout Planning",
+      description: "Accurate and detailed roof drawings tailored for both residential and commercial projects, ensuring smooth on-site execution and material clarity.",
+      icon: <PenTool size={24} />,
+      features: [
+        "Precise blocking layouts for all roof types",
+        "Structural calculations to ensure load-bearing capacity",
+        "Material optimization to reduce waste",
+        "Code-compliant designs for all regions"
+      ],
+      image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
+      buttonText: "Get Drafting Services"
+    },
+    {
+      id: "estimation",
+      title: "Estimation & Quantity Takeoffs",
+      description: "Precise material takeoffs using advanced tools and software like AppliCad — helping you quote faster, reduce waste, and stay competitive.",
+      icon: <BarChart3 size={24} />,
+      features: [
+        "Detailed material specifications and quantities",
+        "Waste factor calculations based on roof geometry",
+        "Cost estimations for budgeting purposes",
+        "Alternative material recommendations for cost savings"
+      ],
+      image: "https://images.unsplash.com/photo-1496307653780-42ee777d4833",
+      buttonText: "Request a Takeoff"
+    },
+    {
+      id: "material-ordering",
+      title: "Material Ordering Support",
+      description: "We handle material ordering and coordination to ensure timely delivery and minimize delays, so your crew can focus on what they do best.",
+      icon: <PackageCheck size={24} />,
+      features: [
+        "Vendor coordination and management",
+        "Just-in-time delivery scheduling",
+        "Material quality verification",
+        "Order tracking and status updates"
+      ],
+      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511",
+      buttonText: "Get Material Support"
+    },
+    {
+      id: "data-entry",
+      title: "Data Entry & Project Documentation",
+      description: "Leave the admin work to us — we manage all project-related data entry, reporting, and file organization to keep your operations running efficiently.",
+      icon: <FileText size={24} />,
+      features: [
+        "Comprehensive project documentation",
+        "Digital file organization and storage",
+        "Progress reporting and documentation",
+        "Material usage tracking and reporting"
+      ],
+      image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2",
+      buttonText: "Outsource Documentation"
+    },
+    {
+      id: "scheduling",
+      title: "Project Scheduling",
+      description: "Structured timelines for roofing jobs that help align labor, deliveries, and site readiness — improving job flow and reducing downtime.",
+      icon: <Calendar size={24} />,
+      features: [
+        "Milestone-based project timelines",
+        "Resource allocation and optimization",
+        "Weather contingency planning",
+        "Integration with overall construction schedule"
+      ],
+      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511",
+      buttonText: "Schedule Your Project"
+    },
+    {
+      id: "applicad",
+      title: "AppliCad Roof Planning",
+      description: "We use AppliCad to produce precise roof models, panel layouts, cutting lists, and material estimates — optimized for accuracy and performance.",
+      icon: <Laptop size={24} />,
+      features: [
+        "3D roof modeling for accurate visualization",
+        "Detailed material lists with cutting patterns",
+        "Sophisticated waste reduction algorithms",
+        "Comprehensive reports for project management"
+      ],
+      image: "https://images.unsplash.com/photo-1431576901776-e539bd916ba2",
+      buttonText: "Get AppliCad Estimates"
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -18,185 +110,66 @@ const Services = () => {
         </div>
       </section>
       
-      {/* Roof Blocking Section */}
-      <section id="roof-blocking" className="py-16 md:py-24 px-4">
+      {/* Services Grid Section */}
+      <section className="py-16 md:py-24 px-4 bg-gray-50">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center mb-4">
-                <div className="text-cooplix-500 mr-4">
-                  <Building size={32} />
-                </div>
-                <h2 className="text-3xl font-bold">Roof Blocking</h2>
-              </div>
-              <p className="text-lg text-gray-700 mb-6">
-                Our expert roof blocking services ensure structural integrity and proper installation for all types of roofing projects. We provide detailed plans that optimize material usage and support your construction timeline.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Precise blocking layouts for all roof types</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Structural calculations to ensure load-bearing capacity</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Material optimization to reduce waste</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Code-compliant designs for all regions</span>
-                </li>
-              </ul>
-              <button className="btn-primary">Get a Blocking Plan</button>
-            </div>
-            <div className="bg-gray-100 p-8 rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1518005020951-eccb494ad742"
-                alt="Roof blocking illustration" 
-                className="w-full h-auto rounded-lg shadow-lg"
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">How We Help Your Business</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our specialized services are designed to streamline your roofing operations, reduce costs, and improve project efficiency.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                linkTo={`/services#${service.id}`}
               />
-            </div>
+            ))}
           </div>
         </div>
       </section>
-      
-      {/* Scheduling Section */}
-      <section id="scheduling" className="py-16 md:py-24 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 bg-white p-8 rounded-lg shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1460574283810-2aab119d8511"
-                alt="Project scheduling" 
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="flex items-center mb-4">
-                <div className="text-cooplix-500 mr-4">
-                  <Calendar size={32} />
+
+      {/* Detailed Service Sections */}
+      {services.map((service, index) => (
+        <section id={service.id} key={service.id} className={`py-16 md:py-24 px-4 ${index % 2 !== 0 ? 'bg-gray-50' : ''}`}>
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className={`${index % 2 !== 0 ? 'order-2 lg:order-1' : ''}`}>
+                <div className="flex items-center mb-4">
+                  <div className="text-cooplix-500 mr-4">
+                    {service.icon}
+                  </div>
+                  <h2 className="text-3xl font-bold">{service.title}</h2>
                 </div>
-                <h2 className="text-3xl font-bold">Scheduling</h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button className="btn-primary">{service.buttonText}</button>
               </div>
-              <p className="text-lg text-gray-700 mb-6">
-                Our detailed scheduling services help optimize your project timeline and coordinate all roofing activities efficiently. We create comprehensive schedules that account for materials, labor, and weather conditions.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Milestone-based project timelines</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Resource allocation and optimization</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Weather contingency planning</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Integration with overall construction schedule</span>
-                </li>
-              </ul>
-              <button className="btn-primary">Schedule Your Project</button>
+              <div className={`${index % 2 !== 0 ? 'order-1 lg:order-2 bg-white p-8 rounded-lg shadow-lg' : 'bg-gray-100 p-8 rounded-lg'}`}>
+                <img 
+                  src={service.image}
+                  alt={`${service.title} illustration`} 
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Quantity Takeoffs Section */}
-      <section id="quantity-takeoffs" className="py-16 md:py-24 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center mb-4">
-                <div className="text-cooplix-500 mr-4">
-                  <BarChart3 size={32} />
-                </div>
-                <h2 className="text-3xl font-bold">Quantity Takeoffs</h2>
-              </div>
-              <p className="text-lg text-gray-700 mb-6">
-                Our precise quantity takeoffs provide accurate material estimations to prevent waste and ensure you have exactly what you need for your project. We analyze plans in detail to deliver comprehensive material lists.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Detailed material specifications and quantities</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Waste factor calculations based on roof geometry</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Cost estimations for budgeting purposes</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Alternative material recommendations for cost savings</span>
-                </li>
-              </ul>
-              <button className="btn-primary">Request a Takeoff</button>
-            </div>
-            <div className="bg-gray-100 p-8 rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1496307653780-42ee777d4833"
-                alt="Quantity takeoff illustration" 
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* AppliCad Expertise Section */}
-      <section id="applicad" className="py-16 md:py-24 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 bg-white p-8 rounded-lg shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1431576901776-e539bd916ba2"
-                alt="AppliCad modeling" 
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="flex items-center mb-4">
-                <div className="text-cooplix-500 mr-4">
-                  <LineChart size={32} />
-                </div>
-                <h2 className="text-3xl font-bold">AppliCad Expertise</h2>
-              </div>
-              <p className="text-lg text-gray-700 mb-6">
-                We provide industry-leading AppliCad-based estimations and 3D modeling for complex roofing projects. Our expertise ensures precision in both design and execution phases.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>3D roof modeling for accurate visualization</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Detailed material lists with cutting patterns</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Sophisticated waste reduction algorithms</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="text-cooplix-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Comprehensive reports for project management</span>
-                </li>
-              </ul>
-              <button className="btn-primary">Get AppliCad Estimates</button>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
       
       {/* Project Types Section */}
       <section className="py-16 md:py-24 px-4">
