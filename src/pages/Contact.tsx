@@ -1,4 +1,3 @@
-
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
@@ -34,8 +33,7 @@ const Contact = () => {
                   <div className="ml-4">
                     <h3 className="text-lg font-semibold">Our Location</h3>
                     <p className="mt-1 text-gray-600">
-                      123 Roofing Way<br />
-                      Construction City, CC 12345
+                      Calicut, Kerala, India
                     </p>
                   </div>
                 </div>
@@ -66,13 +64,8 @@ const Contact = () => {
                   <div className="ml-4">
                     <h3 className="text-lg font-semibold">Call Us</h3>
                     <p className="mt-1 text-gray-600">
-                      <a href="tel:+11234567890" className="text-cooplix-600 hover:text-cooplix-800">
-                        (123) 456-7890
-                      </a>
-                    </p>
-                    <p className="mt-1 text-gray-600">
-                      <a href="tel:+11234567891" className="text-cooplix-600 hover:text-cooplix-800">
-                        (123) 456-7891
+                      <a href="tel:+918848082647" className="text-cooplix-600 hover:text-cooplix-800">
+                        8848082647
                       </a>
                     </p>
                   </div>
