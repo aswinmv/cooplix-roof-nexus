@@ -17,14 +17,10 @@ const Hero = () => {
           animationDelay: "0.4s"
         }}>
             <Button asChild size="lg" className="bg-cooplix-500 hover:bg-cooplix-600 text-white px-8 py-6 text-lg">
-              <Link to="/contact">
-                Schedule an Estimate
-              </Link>
+              <Link to="/contact">Schedule An Estimate</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-white text-cooplix-800 hover:bg-gray-100 border-cooplix-100 px-8 py-6 text-lg">
-              <Link to="/contact">
-                Send Your Plans
-              </Link>
+              
             </Button>
           </div>
         </div>
