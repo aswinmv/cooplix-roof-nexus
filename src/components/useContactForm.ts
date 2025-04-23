@@ -67,6 +67,8 @@ export function useContactForm() {
     ) {
       e.preventDefault();
       setIsSubmitting(true);
+      
+      // Simulate form submission
       setTimeout(() => {
         toast.success(
           "Your message has been sent successfully! We'll get back to you soon."
@@ -74,8 +76,17 @@ export function useContactForm() {
         setIsSubmitting(false);
         resetForm();
       }, 1500);
+    } else {
+      // On production, we still want to show the loading state
+      setIsSubmitting(true);
+      
+      // We don't prevent default here to allow the native form submission to Netlify
+      // But we do want to reset the form after submission is complete
+      setTimeout(() => {
+        setIsSubmitting(false);
+        resetForm();
+      }, 1500);
     }
-    // On production/Netlify, normal POST handles the submission.
   };
 
   return {
