@@ -43,29 +43,44 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success("Your message has been sent successfully! We'll get back to you soon.");
-      setIsSubmitting(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        projectType: "",
-        message: "",
-      });
-      setFileSelected(false);
-      setFileName("");
-    }, 1500);
+  // For Netlify form compatibility, let browser submit on production
+  // But prevent for SPA/local to allow toast demo. 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Let Netlify handle the real submission server-side,
+    // but prevent default and mock toast on localhost/dev.
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      e.preventDefault();
+      setIsSubmitting(true);
+
+      setTimeout(() => {
+        toast.success("Your message has been sent successfully! We'll get back to you soon.");
+        setIsSubmitting(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          projectType: "",
+          message: "",
+        });
+        setFileSelected(false);
+        setFileName("");
+      }, 1500);
+    }
+    // On production, allow normal POST submission to Netlify
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form 
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      className="space-y-6"
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+    >
+      {/* Netlify needs a hidden input for form name */}
+      <input type="hidden" name="form-name" value="contact" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name">Full Name</Label>
@@ -76,6 +91,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="John Doe"
             required
+            autoComplete="name"
           />
         </div>
         
@@ -89,6 +105,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="john@example.com"
             required
+            autoComplete="email"
           />
         </div>
         
@@ -101,6 +118,7 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="(123) 456-7890"
+            autoComplete="tel"
           />
         </div>
         
@@ -112,13 +130,14 @@ const ContactForm = () => {
             value={formData.company}
             onChange={handleChange}
             placeholder="ABC Construction"
+            autoComplete="organization"
           />
         </div>
       </div>
       
       <div className="space-y-2">
         <Label htmlFor="projectType">Project Type</Label>
-        <Select onValueChange={handleSelectChange} value={formData.projectType}>
+        <Select onValueChange={handleSelectChange} value={formData.projectType} name="projectType">
           <SelectTrigger id="projectType">
             <SelectValue placeholder="Select project type" />
           </SelectTrigger>
@@ -146,20 +165,21 @@ const ContactForm = () => {
       
       <div className="space-y-2">
         <Label htmlFor="file">Upload Plans (optional)</Label>
-        <div className="flex items-center">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
           <label 
             htmlFor="file" 
             className="cursor-pointer flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md py-3 px-4 w-full hover:border-cooplix-400 transition-colors"
           >
             <input
               id="file"
+              name="file"
               type="file"
               accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png"
               className="sr-only"
               onChange={handleFileChange}
             />
             {!fileSelected ? (
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full">
                 <Upload className="w-6 h-6 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-500">
                   Click to upload plans or drag and drop
