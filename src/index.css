@@ -81,14 +81,74 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-cooplix-500 hover:bg-cooplix-600 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300;
+    @apply bg-cooplix-500 hover:bg-cooplix-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-100 text-cooplix-800 border border-cooplix-200 font-medium py-2 px-6 rounded-md transition-colors duration-300;
+    @apply bg-white hover:bg-gray-100 text-cooplix-800 border border-cooplix-200 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md;
   }
 
   .card-shadow {
     @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
   }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+  
+  .subtle-fade-in {
+    @apply opacity-0 animate-fade-in;
+  }
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+/* Enhanced animation definitions */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s forwards;
+}
+
+/* Staggered animation helper classes */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
