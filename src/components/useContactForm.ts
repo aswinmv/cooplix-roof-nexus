@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface ContactFormState {
   name: string;
@@ -23,6 +24,7 @@ export function useContactForm() {
   });
   const [fileSelected, setFileSelected] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>("");
+  const [fileObject, setFileObject] = useState<File | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -40,9 +42,11 @@ export function useContactForm() {
       const file = e.target.files[0];
       setFileSelected(true);
       setFileName(file.name);
+      setFileObject(file);
     } else {
       setFileSelected(false);
       setFileName("");
+      setFileObject(null);
     }
   };
 
@@ -57,35 +61,73 @@ export function useContactForm() {
     });
     setFileSelected(false);
     setFileName("");
+    setFileObject(null);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Prevent default and show toast locally, allow submit on Netlify prod.
-    if (
-      window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1"
-    ) {
-      e.preventDefault();
-      setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Upload file if one is selected
+      let fileUrl = "";
+      if (fileSelected && fileObject) {
+        // Generate a unique file path using the original file name and current timestamp
+        const filePath = `${Date.now()}-${fileName}`;
+        
+        // Upload the file to Supabase Storage
+        const { data: fileData, error: fileError } = await supabase
+          .storage
+          .from('contact-files')
+          .upload(filePath, fileObject, {
+            cacheControl: '3600',
+            upsert: false
+          });
+          
+        if (fileError) {
+          console.error("File upload error:", fileError);
+          toast.error("Failed to upload file. Please try again.");
+          setIsSubmitting(false);
+          return;
+        }
+        
+        // If file uploaded successfully, get the public URL
+        if (fileData) {
+          const { data: publicUrlData } = supabase
+            .storage
+            .from('contact-files')
+            .getPublicUrl(fileData.path);
+            
+          fileUrl = publicUrlData.publicUrl;
+        }
+      }
       
-      // Simulate form submission
-      setTimeout(() => {
-        toast.success(
-          "Your message has been sent successfully! We'll get back to you soon."
-        );
-        setIsSubmitting(false);
+      // Save contact submission to the database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          project_type: formData.projectType,
+          message: formData.message,
+          file_name: fileSelected ? fileName : null,
+          file_url: fileUrl || null
+        });
+        
+      if (error) {
+        console.error("Submission error:", error);
+        toast.error("There was a problem submitting your form. Please try again.");
+      } else {
+        toast.success("Your message has been sent successfully! We'll get back to you soon.");
         resetForm();
-      }, 1500);
-    } else {
-      // On production, we still want to show the loading state
-      setIsSubmitting(true);
-      
-      // We don't prevent default here to allow the native form submission to Netlify
-      // But we do want to reset the form after submission is complete
-      setTimeout(() => {
-        setIsSubmitting(false);
-        resetForm();
-      }, 1500);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

@@ -1,1 +1,5 @@
+
 project_id = "pmcvxwjfiezarveljzry"
+
+[storage.contact-files]
+public = true
