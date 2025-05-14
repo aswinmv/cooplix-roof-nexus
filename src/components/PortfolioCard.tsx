@@ -14,7 +14,7 @@ const PortfolioCard = ({ title, category, imageUrl, linkTo }: PortfolioCardProps
       <div className="aspect-w-16 aspect-h-9 w-full">
         <img 
           src={imageUrl} 
-          alt={title} 
+          alt={`${title} - Professional roof estimation services for ${category} projects`} 
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>

@@ -21,6 +21,8 @@ const Hero = () => {
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=${isMobile ? 640 : 1920}&q=${isMobile ? 60 : 80}')` 
         }}
+        role="img"
+        aria-label="Professional roof estimation and planning services for commercial buildings"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-cooplix-800/60 to-transparent"></div>
       </div>
