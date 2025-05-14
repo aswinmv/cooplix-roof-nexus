@@ -92,6 +92,7 @@ const Navbar = () => {
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-cooplix-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cooplix-500"
                 aria-expanded={isMenuOpen}
                 aria-label="Toggle navigation menu"
+                type="button"
               >
                 <span className="sr-only">Open main menu</span>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
