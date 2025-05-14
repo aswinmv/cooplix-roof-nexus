@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,26 +10,27 @@ const Navbar = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   
-  // Close mobile menu when route changes
+  // Close mobile menu when route changes - memoized for better performance
   useEffect(() => {
     if (isMenuOpen) {
       setIsMenuOpen(false);
     }
-  }, [location.pathname]);
+  }, [location.pathname, isMenuOpen]);
 
-  // Close mobile menu when screen size changes from mobile to desktop
+  // Close mobile menu when screen size changes from mobile to desktop - memoized for better performance
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
       setIsMenuOpen(false);
     }
   }, [isMobile, isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Memoized toggle function to prevent unnecessary re-renders
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prevState => !prevState);
+  }, []);
   
-  // Check if a nav link is active
-  const isActiveLink = (path) => location.pathname === path;
+  // Check if a nav link is active - memoized
+  const isActiveLink = useCallback((path) => location.pathname === path, [location.pathname]);
   
   const navLinks = [
     { path: "/", label: "Home" },
@@ -54,73 +55,83 @@ const Navbar = () => {
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6 lg:space-x-8">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path}
-                to={link.path} 
-                className={`transition-colors px-3 py-2 text-sm font-medium ${
-                  isActiveLink(link.path) 
-                    ? "text-cooplix-600 font-semibold" 
-                    : "text-gray-700 hover:text-cooplix-600"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop Navigation - Only render in desktop mode */}
+          {!isMobile && (
+            <nav className="hidden md:flex space-x-6 lg:space-x-8">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className={`transition-colors px-3 py-2 text-sm font-medium ${
+                    isActiveLink(link.path) 
+                      ? "text-cooplix-600 font-semibold" 
+                      : "text-gray-700 hover:text-cooplix-600"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          )}
           
-          <div className="hidden md:flex">
-            <Button asChild className="bg-cooplix-500 hover:bg-cooplix-600 text-white">
-              <Link to="/contact">Get A Free Estimate</Link>
-            </Button>
-          </div>
+          {!isMobile && (
+            <div className="hidden md:flex">
+              <Button asChild className="bg-cooplix-500 hover:bg-cooplix-600 text-white">
+                <Link to="/contact">Get A Free Estimate</Link>
+              </Button>
+            </div>
+          )}
           
           {/* Mobile Navigation Button */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleMenu} 
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-cooplix-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cooplix-500"
-              aria-expanded={isMenuOpen}
-            >
-              <span className="sr-only">Open main menu</span>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {isMobile && (
+            <div className="md:hidden">
+              <button 
+                onClick={toggleMenu} 
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-cooplix-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cooplix-500"
+                aria-expanded={isMenuOpen}
+              >
+                <span className="sr-only">Open main menu</span>
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
       
-      {/* Mobile Navigation Menu - Use animation for smooth transitions */}
-      <div 
-        className={`md:hidden bg-white border-t overflow-hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen 
-            ? "max-h-[400px] opacity-100" 
-            : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.path}
-              to={link.path} 
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActiveLink(link.path)
-                  ? "text-cooplix-600 bg-gray-50"
-                  : "text-gray-700 hover:text-cooplix-500 hover:bg-gray-50"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link 
-            to="/contact" 
-            className="block w-full text-center mt-3 px-4 py-2 rounded-md shadow-sm text-white bg-cooplix-500 hover:bg-cooplix-600"
-          >
-            Get an Estimate
-          </Link>
+      {/* Mobile Navigation Menu - Optimized with conditional rendering */}
+      {isMobile && (
+        <div 
+          className={`md:hidden bg-white border-t overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen 
+              ? "max-h-[400px] opacity-100" 
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          {isMenuOpen && (
+            <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    isActiveLink(link.path)
+                      ? "text-cooplix-600 bg-gray-50"
+                      : "text-gray-700 hover:text-cooplix-500 hover:bg-gray-50"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link 
+                to="/contact" 
+                className="block w-full text-center mt-3 px-4 py-2 rounded-md shadow-sm text-white bg-cooplix-500 hover:bg-cooplix-600"
+              >
+                Get an Estimate
+              </Link>
+            </div>
+          )}
         </div>
-      </div>
+      )}
     </header>
   );
 };
