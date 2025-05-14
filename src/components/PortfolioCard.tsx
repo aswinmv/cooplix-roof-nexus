@@ -10,7 +10,11 @@ interface PortfolioCardProps {
 
 const PortfolioCard = ({ title, category, imageUrl, linkTo }: PortfolioCardProps) => {
   return (
-    <Link to={linkTo} className="group block relative overflow-hidden rounded-lg shadow-lg">
+    <Link 
+      to={linkTo} 
+      className="group block relative overflow-hidden rounded-lg shadow-lg"
+      aria-label={`View ${title} - ${category} roofing project details`}
+    >
       <div className="aspect-w-16 aspect-h-9 w-full">
         <img 
           src={imageUrl} 

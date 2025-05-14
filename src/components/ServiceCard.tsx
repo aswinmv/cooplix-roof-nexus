@@ -21,8 +21,9 @@ const ServiceCard = ({ title, description, icon, linkTo }: ServiceCardProps) => 
       <Link 
         to={linkTo} 
         className="inline-flex items-center text-cooplix-600 hover:text-cooplix-700 font-medium"
+        aria-label={`Learn more about ${title}`}
       >
-        Learn more <ArrowRight size={16} className="ml-1" />
+        Learn more <ArrowRight size={16} className="ml-1" aria-hidden="true" />
       </Link>
     </div>
   );
