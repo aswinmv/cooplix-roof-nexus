@@ -102,43 +102,41 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile Navigation Menu - Optimized with conditional rendering */}
+      {/* Mobile Navigation Menu */}
       {isMobile && (
         <div 
-          className={`md:hidden bg-white border-t overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden bg-white border-t ${
             isMenuOpen 
               ? "max-h-[400px] opacity-100" 
               : "max-h-0 opacity-0"
-          }`}
+          } overflow-hidden transition-all duration-300 ease-in-out`}
           id="mobile-menu"
           aria-hidden={!isMenuOpen}
         >
-          {isMenuOpen && (
-            <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.path}
-                  to={link.path} 
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    isActiveLink(link.path)
-                      ? "text-cooplix-600 bg-gray-50"
-                      : "text-gray-700 hover:text-cooplix-500 hover:bg-gray-50"
-                  }`}
-                  aria-label={link.label}
-                  aria-current={isActiveLink(link.path) ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              ))}
+          <div className={`px-4 pt-2 pb-3 space-y-1 sm:px-3 ${!isMenuOpen && 'hidden'}`}>
+            {navLinks.map((link) => (
               <Link 
-                to="/contact" 
-                className="block w-full text-center mt-3 px-4 py-2 rounded-md shadow-sm text-white bg-cooplix-500 hover:bg-cooplix-600"
-                aria-label="Get a free estimate for your roofing project"
+                key={link.path}
+                to={link.path} 
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActiveLink(link.path)
+                    ? "text-cooplix-600 bg-gray-50"
+                    : "text-gray-700 hover:text-cooplix-500 hover:bg-gray-50"
+                }`}
+                aria-label={link.label}
+                aria-current={isActiveLink(link.path) ? "page" : undefined}
               >
-                Get an Estimate
+                {link.label}
               </Link>
-            </div>
-          )}
+            ))}
+            <Link 
+              to="/contact" 
+              className="block w-full text-center mt-3 px-4 py-2 rounded-md shadow-sm text-white bg-cooplix-500 hover:bg-cooplix-600"
+              aria-label="Get a free estimate for your roofing project"
+            >
+              Get an Estimate
+            </Link>
+          </div>
         </div>
       )}
     </header>
