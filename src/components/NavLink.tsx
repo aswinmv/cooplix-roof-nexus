@@ -7,10 +7,9 @@ interface NavLinkProps {
   children: React.ReactNode;
   mobile?: boolean;
   onClick?: () => void;
-  ariaLabel?: string;
 }
 
-const NavLink = ({ to, active, children, mobile = false, onClick, ariaLabel }: NavLinkProps) => {
+const NavLink = ({ to, active, children, mobile = false, onClick }: NavLinkProps) => {
   const baseClasses = "transition-colors font-medium";
   
   const desktopClasses = active
@@ -24,7 +23,7 @@ const NavLink = ({ to, active, children, mobile = false, onClick, ariaLabel }: N
   const className = `${baseClasses} ${mobile ? mobileClasses : desktopClasses}`;
   
   return (
-    <Link to={to} className={className} onClick={onClick} aria-label={ariaLabel || typeof children === 'string' ? children as string : undefined} aria-current={active ? 'page' : undefined}>
+    <Link to={to} className={className} onClick={onClick}>
       {children}
     </Link>
   );

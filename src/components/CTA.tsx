@@ -38,7 +38,7 @@ const CTA = memo(({
             size="lg"
             className="bg-cooplix-500 hover:bg-cooplix-600 text-white px-6 sm:px-8"
           >
-            <Link to={primaryButtonLink} aria-label={primaryButtonText}>
+            <Link to={primaryButtonLink}>
               {primaryButtonText}
             </Link>
           </Button>
@@ -50,7 +50,7 @@ const CTA = memo(({
               size="lg"
               className="bg-white text-cooplix-800 hover:bg-gray-100 border-cooplix-200 px-6 sm:px-8"
             >
-              <Link to={secondaryButtonLink} aria-label={secondaryButtonText}>
+              <Link to={secondaryButtonLink}>
                 {secondaryButtonText}
               </Link>
             </Button>

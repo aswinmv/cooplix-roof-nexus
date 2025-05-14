@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 const Footer = () => {
@@ -10,21 +9,17 @@ const Footer = () => {
             <p className="text-gray-300 mb-2">House of Roofings</p>
             <p className="text-gray-300 mb-4">We specialize in outsourcing services to Roofing Industry. Our services include drafting, estimation, ordering, data entry and so on. Are you looking forward for more profit and expansion of your Roofing Business, then you are on the right place.</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" aria-label="Follow us on Facebook">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Facebook size={20} />
-                <span className="sr-only">Facebook</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" aria-label="Follow us on Twitter">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" aria-label="Follow us on LinkedIn">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors" aria-label="Follow us on Instagram">
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
               </a>
             </div>
           </div>
@@ -33,27 +28,27 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors" aria-label="Go to homepage">
+                <Link to="/" className="text-gray-300 hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our roofing services">
+                <Link to="/services" className="text-gray-300 hover:text-white transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our company">
+                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/portfolio" className="text-gray-300 hover:text-white transition-colors" aria-label="View our portfolio of roofing projects">
+                <Link to="/portfolio" className="text-gray-300 hover:text-white transition-colors">
                   Portfolio
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors" aria-label="Contact us for roofing services">
+                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -64,32 +59,32 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/services#roof-blocking" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our roof blocking services">
+                <Link to="/services#roof-blocking" className="text-gray-300 hover:text-white transition-colors">
                   Roof Blocking
                 </Link>
               </li>
               <li>
-                <Link to="/services#scheduling" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our scheduling services">
+                <Link to="/services#scheduling" className="text-gray-300 hover:text-white transition-colors">
                   Scheduling
                 </Link>
               </li>
               <li>
-                <Link to="/services#quantity-takeoffs" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our quantity takeoffs services">
+                <Link to="/services#quantity-takeoffs" className="text-gray-300 hover:text-white transition-colors">
                   Quantity Takeoffs
                 </Link>
               </li>
               <li>
-                <Link to="/services#applicad" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our AppliCad expertise">
+                <Link to="/services#applicad" className="text-gray-300 hover:text-white transition-colors">
                   AppliCad Expertise
                 </Link>
               </li>
               <li>
-                <Link to="/services#residential" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our residential roofing projects">
+                <Link to="/services#residential" className="text-gray-300 hover:text-white transition-colors">
                   Residential Projects
                 </Link>
               </li>
               <li>
-                <Link to="/services#commercial" className="text-gray-300 hover:text-white transition-colors" aria-label="Learn about our commercial roofing projects">
+                <Link to="/services#commercial" className="text-gray-300 hover:text-white transition-colors">
                   Commercial Projects
                 </Link>
               </li>
@@ -101,15 +96,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 mt-1 flex-shrink-0" />
-                <span className="text-gray-300">Calicut ,Kerala India </span>
+                <span className="text-gray-300">Calicut ,Kerala India </span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 flex-shrink-0" />
-                <a href="tel:+918848082647" className="text-gray-300 hover:text-white transition-colors" aria-label="Call us at 8848082647">8848082647</a>
+                <a href="tel:+11234567890" className="text-gray-300 hover:text-white transition-colors">8848082647</a>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />
-                <a href="mailto:info@cooplix.com" className="text-gray-300 hover:text-white transition-colors" aria-label="Email us at info@cooplix.com">
+                <a href="mailto:info@cooplix.com" className="text-gray-300 hover:text-white transition-colors">
                   info@cooplix.com
                 </a>
               </li>

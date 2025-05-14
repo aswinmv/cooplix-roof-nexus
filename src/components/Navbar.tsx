@@ -45,7 +45,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center" aria-label="Cooplix homepage">
+            <Link to="/" className="flex items-center">
               <span className="text-xl sm:text-2xl font-bold text-cooplix-800">
                 Cooplix
               </span>
@@ -57,7 +57,7 @@ const Navbar = () => {
           
           {/* Desktop Navigation - Only render in desktop mode */}
           {!isMobile && (
-            <nav className="hidden md:flex space-x-6 lg:space-x-8" aria-label="Main navigation">
+            <nav className="hidden md:flex space-x-6 lg:space-x-8">
               {navLinks.map((link) => (
                 <Link 
                   key={link.path}
@@ -67,8 +67,6 @@ const Navbar = () => {
                       ? "text-cooplix-600 font-semibold" 
                       : "text-gray-700 hover:text-cooplix-600"
                   }`}
-                  aria-label={link.label}
-                  aria-current={isActiveLink(link.path) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -79,7 +77,7 @@ const Navbar = () => {
           {!isMobile && (
             <div className="hidden md:flex">
               <Button asChild className="bg-cooplix-500 hover:bg-cooplix-600 text-white">
-                <Link to="/contact" aria-label="Get a free estimate for your roofing project">Get A Free Estimate</Link>
+                <Link to="/contact">Get A Free Estimate</Link>
               </Button>
             </div>
           )}
@@ -91,7 +89,6 @@ const Navbar = () => {
                 onClick={toggleMenu} 
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-cooplix-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cooplix-500"
                 aria-expanded={isMenuOpen}
-                aria-label="Toggle navigation menu"
               >
                 <span className="sr-only">Open main menu</span>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -109,8 +106,6 @@ const Navbar = () => {
               ? "max-h-[400px] opacity-100" 
               : "max-h-0 opacity-0"
           }`}
-          id="mobile-menu"
-          aria-hidden={!isMenuOpen}
         >
           {isMenuOpen && (
             <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3">
@@ -123,8 +118,6 @@ const Navbar = () => {
                       ? "text-cooplix-600 bg-gray-50"
                       : "text-gray-700 hover:text-cooplix-500 hover:bg-gray-50"
                   }`}
-                  aria-label={link.label}
-                  aria-current={isActiveLink(link.path) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -132,7 +125,6 @@ const Navbar = () => {
               <Link 
                 to="/contact" 
                 className="block w-full text-center mt-3 px-4 py-2 rounded-md shadow-sm text-white bg-cooplix-500 hover:bg-cooplix-600"
-                aria-label="Get a free estimate for your roofing project"
               >
                 Get an Estimate
               </Link>
